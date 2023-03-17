@@ -7,6 +7,7 @@ The API for a To-Do App, meant to be a study of Python's FastAPI, application of
 This project was built using the following:
 
 - Python 3.10.9
+- FastAPI 0.94.1
 
 ## Running the Project
 
