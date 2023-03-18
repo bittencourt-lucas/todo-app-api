@@ -6,8 +6,12 @@ The API for a To-Do App, meant to be a study of Python's FastAPI, application of
 
 This project was built using the following:
 
-- Python 3.10.9
-- FastAPI 0.94.1
+- Python==3.10.9
+- FastAPI==0.94.1
+- uvicorn==0.21.1
+- python-dotenv==1.0.0
+- SQLAlchemy==2.0.6
+- psycopg2-binary==2.9.5
 
 ## Running the Project
 
@@ -22,6 +26,8 @@ To install [FastAPI](https://fastapi.tiangolo.com/), run `pip install fastapi`.
 To install the Asynchronous Server Gateway Interface (ASGI), run `pip install "uvicorn[standard]"`.
 
 To install the ORM, run `pip install sqlalchemy`.
+
+To install the database dependencies, run `pip install psycopg2-binary`.
 
 ### Running the environment locally
 
