@@ -20,3 +20,13 @@ To create the environment, run `python3 venv venv`, and to activate it run `sour
 To install [FastAPI](https://fastapi.tiangolo.com/), run `pip install fastapi`.
 
 To install the Asynchronous Server Gateway Interface (ASGI), run `pip install "uvicorn[standard]"`.
+
+### Deploying the environment
+
+> 🚧 The instructions are meant to be used with Google Cloud Platform's App Engine. If you are using a different cloud provider, check the instructions specific to that provider.
+
+First, follow the instructions presented on the previous section.
+
+After that, run `pip install gunicorn`.
+
+Finally, you just need to run `gcloud app deploy`.
