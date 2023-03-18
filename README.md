@@ -21,6 +21,8 @@ To install [FastAPI](https://fastapi.tiangolo.com/), run `pip install fastapi`.
 
 To install the Asynchronous Server Gateway Interface (ASGI), run `pip install "uvicorn[standard]"`.
 
+To install the ORM, run `pip install sqlalchemy`.
+
 ### Running the environment locally
 
 First, follow the instructions presented in the `Preparing the environment` section.
