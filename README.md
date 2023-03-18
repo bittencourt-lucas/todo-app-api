@@ -12,6 +12,7 @@ This project was built using the following:
 - python-dotenv==1.0.0
 - SQLAlchemy==2.0.6
 - psycopg2-binary==2.9.5
+- alembic==1.10.2
 
 ## Running the Project
 
@@ -28,6 +29,8 @@ To install the Asynchronous Server Gateway Interface (ASGI), run `pip install "u
 To install the ORM, run `pip install sqlalchemy`.
 
 To install the database dependencies, run `pip install psycopg2-binary`.
+
+To install the dependency to create database migrations, run `pip install alembic`.
 
 ### Running the environment locally
 
