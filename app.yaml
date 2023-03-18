@@ -1,6 +1,6 @@
 runtime: python310
 
-entrypoint: gunicorn -w 1 -k uvicorn.workers.UvicornWorker main:app
+entrypoint: gunicorn -w 1 -k uvicorn.workers.UvicornWorker src.shared.main:app
 
 instance_class: F1
 

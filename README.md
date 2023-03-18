@@ -11,7 +11,7 @@ This project was built using the following:
 
 ## Running the Project
 
-### Creating the environment
+### Preparing the environment
 
 > 🚧 The instructions are meant to be used with a bash/zsh shell. If you are using a different shell, refer to: https://docs.python.org/3/library/venv.html
 
@@ -21,11 +21,17 @@ To install [FastAPI](https://fastapi.tiangolo.com/), run `pip install fastapi`.
 
 To install the Asynchronous Server Gateway Interface (ASGI), run `pip install "uvicorn[standard]"`.
 
+### Running the environment locally
+
+First, follow the instructions presented in the `Preparing the environment` section.
+
+After that, run `uvicorn src.shared.main:app --reload --port=8080`.
+
 ### Deploying the environment
 
 > 🚧 The instructions are meant to be used with Google Cloud Platform's App Engine. If you are using a different cloud provider, check the instructions specific to that provider.
 
-First, follow the instructions presented on the previous section.
+First, follow the instructions presented in the `Preparing the environment` section.
 
 After that, run `pip install gunicorn`.
 
