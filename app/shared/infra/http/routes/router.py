@@ -1,7 +1,6 @@
 from fastapi import APIRouter
+from app.modules.notes.infra.http.routes.NotesRouter import notes_router
 
-router = APIRouter(prefix="/api")
+router = APIRouter(prefix='/api')
 
-@router.get("/")
-def read_root():
-    return {"Hello": "World"}
+router.include_router(notes_router)
