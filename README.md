@@ -1,6 +1,6 @@
 # To-Do App API
 
-The API for a To-Do App, meant to be a study of Python's FastAPI, application of software engineering principles such as SOLID and Clean Architecture, and training automatized testing and TDD.
+The API for a To-Do App, meant to be a study of Python's [FastAPI](https://fastapi.tiangolo.com/), application of software engineering principles such as SOLID and Clean Architecture, and training automatized testing and TDD.
 
 ## Dependencies
 
@@ -11,7 +11,6 @@ This project was built using the following:
 - uvicorn==0.21.1
 - python-dotenv==1.0.0
 - SQLAlchemy==2.0.6
-- psycopg2-binary==2.9.5
 - alembic==1.10.2
 
 ## Running the Project
@@ -22,15 +21,9 @@ This project was built using the following:
 
 To create the environment, run `python3 venv venv`, and to activate it run `source venv/bin/activate`.
 
-To install [FastAPI](https://fastapi.tiangolo.com/), run `pip install fastapi`.
+To install all the project's requirements, run `pip install -r /path/to/requirements.txt`.
 
-To install the Asynchronous Server Gateway Interface (ASGI), run `pip install "uvicorn[standard]"`.
-
-To install the ORM, run `pip install sqlalchemy`.
-
-To install the database dependencies, run `pip install psycopg2-binary`.
-
-To install the dependency to create database migrations, run `pip install alembic`.
+To execute the project's migrations, run `alembic upgrade head`.
 
 ### Running the environment locally
 
@@ -44,6 +37,4 @@ After that, run `uvicorn src.shared.main:app --reload --port=8080`.
 
 First, follow the instructions presented in the `Preparing the environment` section.
 
-After that, run `pip install gunicorn`.
-
-Finally, you just need to run `gcloud app deploy`.
+Once you are done with that, you just need to run `gcloud app deploy`.
