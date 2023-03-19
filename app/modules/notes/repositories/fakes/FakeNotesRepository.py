@@ -1,18 +1,18 @@
 from .. import INotesRepository
 from ...infra.sqlalchemy.schemas.NoteSchema import Note
 
-class FakeNotesRepository(INotesRepository):
+class FakeNotesRepository:
   notes: list[Note] = []
   id: int = 0
 
-  def create(self, data) -> Note:
-    id += 1
+  async def create(self, data: tuple([str, str])) -> Note:
+    self.id += 1
     title, content = data
 
-    note = Note(id, title, content)
-    notes.append(data)
+    note = Note(id=self.id, title=title, content=content)
+    self.notes.append(data)
     
     return note
 
-  def index(self, id) -> Note:
+  async def index(self, id: int) -> Note:
     return self.notes[id]
