@@ -1,16 +1,11 @@
 import abc
 from ..infra.sqlalchemy.schemas.NoteSchema import Note
 
-class INotesRepository(metaclass=abc.ABCMeta):
-  def __init_subclass__(cls, **kwargs):
-    # always make it colaborative:
-    super().__init_subclass__(**kwargs)
-    register_class(cls)
+class INotesRepository(abc.ABC):
+  @abc.abstractmethod
+  def create(self, data: tuple([str, str])) -> Note:
+    raise NotImplementedError
 
   @abc.abstractmethod
-  async def create(self, data: tuple([str, str])) -> Note:
-    return
-
-  @abc.abstractmethod
-  async def index(self, id: int) -> Note:
-    return
+  def index(self, id: int) -> Note:
+    raise NotImplementedError
