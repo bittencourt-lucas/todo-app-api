@@ -4,14 +4,11 @@ The API for a To-Do App, meant to be a study of Python's [FastAPI](https://fasta
 
 ## Dependencies
 
-This project was built using the following:
+You can check a full list of dependencies in `requirements.txt`. The core dependencies for the project are:
 
 - Python==3.10.9
 - FastAPI==0.94.1
-- uvicorn==0.21.1
-- python-dotenv==1.0.0
 - SQLAlchemy==2.0.6
-- alembic==1.10.2
 
 ## Running the Project
 
@@ -38,3 +35,13 @@ After that, run `uvicorn src.shared.main:app --reload --port=8080`.
 First, follow the instructions presented in the `Preparing the environment` section.
 
 Once you are done with that, you just need to run `gcloud app deploy`.
+
+## Running the tests
+
+### Testing the Notes module
+
+To execute service tests, run `python -m unittest -v app/modules/notes/tests/*.py`.
+
+To execute controller tests, run `python -m unittest -v app/modules/notes/controllers/*.py`.
+
+To execute all tests, run `python -m unittest -v app/modules/notes/**/*.py`.

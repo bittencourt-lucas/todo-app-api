@@ -1,6 +1,6 @@
 import unittest
-from ..services.CreateNoteService import CreateNoteService
-from ..repositories.fakes.FakeNotesRepository import FakeNotesRepository
+from ...services.CreateNoteService import CreateNoteService
+from ...repositories.fakes.FakeNotesRepository import FakeNotesRepository
 
 class TestCreateNoteService(unittest.IsolatedAsyncioTestCase):
   def setUp(self):
@@ -14,3 +14,4 @@ class TestCreateNoteService(unittest.IsolatedAsyncioTestCase):
     self.assertIsInstance(note.id, int)
     self.assertEqual(note.title, title)
     self.assertEqual(note.content, content)
+    
