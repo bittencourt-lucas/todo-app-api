@@ -1,5 +1,5 @@
 from ..INotesRepository import INotesRepository
-from ...infra.sqlalchemy.schemas.NoteSchema import Note
+from ...infra.sqlalchemy.schemas.Note import Note
 
 class FakeNotesRepository(INotesRepository):
   notes: list[Note] = []
