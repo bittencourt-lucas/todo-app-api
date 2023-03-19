@@ -1,8 +1,10 @@
-from ..dtos.ICreateNoteDTO import ICreateNoteDTO
+import abc
 
-class INotesRepository(type):
-  def create(self, data: ICreateNoteDTO) -> Note:
-    pass
+class INotesRepository(metaclass=abc.ABCMeta):
+  @abc.abstractmethod
+  def create(self, data: tuple(str, str)) -> Note:
+    return
 
-  def index(self, id: Integer) -> Note:
-    pass
+  @abc.abstractmethod
+  def index(self, id: int) -> Note:
+    return
