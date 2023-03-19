@@ -1,17 +1,16 @@
-from fastapi import APIRouter, Depends
-from app.shared.infra.sqlalchemy.orm import get_session
-from app.shared.infra.sqlalchemy.orm import engine
+from fastapi import APIRouter
+from app.shared.infra.sqlalchemy.orm import get_session, engine
 from ..controllers.NotesController import NotesController
+from ...sqlalchemy.schemas.Note import Note as NoteSchema, NoteCreate
 from ...sqlalchemy.models import Note as NoteModel
-from ...sqlalchemy.schemas.Note import Note as NoteSchema
 
 NoteModel.Base.metadata.create_all(bind=engine)
 
-notes_controller = NotesController(Depends(get_session()))
+notes_controller = NotesController(get_session())
 
 notes_router = APIRouter(prefix='/notes')
 
 @notes_router.post('/', response_model=NoteSchema)
-async def create_note(title: str, content: str):
-  request = (title, content)
-  return notes_controller.create(request)
+async def create_note(note: NoteCreate):
+  request = tuple([note.title, note.content])
+  return await notes_controller.create(request)

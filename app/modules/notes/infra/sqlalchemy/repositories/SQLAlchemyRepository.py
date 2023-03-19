@@ -9,7 +9,7 @@ class SQLAlchemyRepository(INotesRepository):
 
   async def create(self, data: tuple[str, str]) -> NoteSchema:
     title, content = data
-    note = NoteModel(title, content)
+    note = NoteModel(title=title, content=content)
     self.session.add(note)
     self.session.commit()
     self.session.refresh(note)

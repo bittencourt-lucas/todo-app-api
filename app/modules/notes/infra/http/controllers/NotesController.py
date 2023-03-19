@@ -9,7 +9,7 @@ class NotesController:
 
   async def create(self, request: tuple([str, str])) -> NoteSchema:
     title, content = request
-    db_session = SQLAlchemyRepository(session)
-    create_note_service = CreateNoteService(db_session)
-    note = create_note_service.execute(title, content)
+    ormRepository = SQLAlchemyRepository(self.session)
+    create_note_service = CreateNoteService(ormRepository)
+    note = await create_note_service.execute(title, content)
     return note
