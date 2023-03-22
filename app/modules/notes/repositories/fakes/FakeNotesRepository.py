@@ -8,8 +8,8 @@ class FakeNotesRepository(INotesRepository):
 
   async def create(self, title: str) -> NoteSchema:
     self.id += 1
-
-    note = NoteModel(id=self.id, title=title, order=self.id, completed=False)
+    order = len(await self.list())+1
+    note = NoteModel(id=self.id, title=title, order=order, completed=False)
     self.notes.append(note)
     
     return note
