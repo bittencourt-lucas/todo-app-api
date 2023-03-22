@@ -14,3 +14,7 @@ notes_router = APIRouter(prefix='/notes')
 async def create_note(note: NoteCreate):
   request = note.title
   return await notes_controller.create(request)
+
+@notes_router.get('/', response_model=list[NoteSchema])
+async def list_notes():
+  return await notes_controller.list()
