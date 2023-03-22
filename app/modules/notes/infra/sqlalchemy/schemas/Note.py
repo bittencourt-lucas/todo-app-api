@@ -2,7 +2,6 @@ from pydantic import BaseModel
 
 class NoteBase(BaseModel):
   title: str
-  content: str | None = None
 
 class NoteCreate(NoteBase):
   pass
@@ -10,7 +9,8 @@ class NoteCreate(NoteBase):
 class Note(NoteBase):
   id: int
   title: str
-  content: str
+  completed: bool
+  order: int
 
   class Config:
     orm_mode = True

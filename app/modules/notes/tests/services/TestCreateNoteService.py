@@ -9,9 +9,9 @@ class TestCreateNoteService(unittest.IsolatedAsyncioTestCase):
 
   async def test_execute(self):
     title = 'Hello World'
-    content = 'This is a note'
-    note = await self.create_note.execute(title, content)
+    note = await self.create_note.execute(title)
     self.assertIsInstance(note.id, int)
     self.assertEqual(note.title, title)
-    self.assertEqual(note.content, content)
+    self.assertEqual(note.completed, False)
+    self.assertIsInstance(note.order, int)
     

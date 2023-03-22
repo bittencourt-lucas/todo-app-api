@@ -19,7 +19,8 @@ def upgrade() -> None:
     'notes',
     sa.Column('id', sa.Integer, primary_key=True),
     sa.Column('title', sa.String, nullable=False),
-    sa.Column('content', sa.String, nullable=True),
+    sa.Column('completed', sa.Boolean, nullable=True, default=False),
+    sa.Column('order', sa.Integer, nullable=True),
   )
 
 def downgrade() -> None:

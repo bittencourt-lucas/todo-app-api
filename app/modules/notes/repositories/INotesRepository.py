@@ -3,7 +3,7 @@ from ..infra.sqlalchemy.schemas.Note import Note
 
 class INotesRepository(abc.ABC):
   @abc.abstractmethod
-  def create(self, data: tuple([str, str])) -> Note:
+  def create(self, title: str) -> Note:
     raise NotImplementedError
 
   @abc.abstractmethod
