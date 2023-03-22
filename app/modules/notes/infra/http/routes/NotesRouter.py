@@ -18,3 +18,8 @@ async def create_note(note: NoteCreate):
 @notes_router.get('/', response_model=list[NoteSchema])
 async def list_notes():
   return await notes_controller.list()
+
+@notes_router.get('/{id}', response_model=NoteSchema)
+async def index(id: int):
+  request = id
+  return await notes_controller.index(id)
