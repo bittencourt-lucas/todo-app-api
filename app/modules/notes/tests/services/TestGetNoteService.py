@@ -5,9 +5,12 @@ from ...repositories.fakes.FakeNotesRepository import FakeNotesRepository
 
 class TestGetNoteService(unittest.IsolatedAsyncioTestCase):
   def setUp(self):
-    notes_repository = FakeNotesRepository()
-    self.create_note = CreateNoteService(notes_repository)
-    self.get_note = GetNoteService(notes_repository)
+    self.notes_repository = FakeNotesRepository()
+    self.create_note = CreateNoteService(self.notes_repository)
+    self.get_note = GetNoteService(self.notes_repository)
+
+  def tearDown(self):
+    self.notes_repository.clear()
 
   async def test_execute(self):
     title = 'Hello World'
