@@ -8,12 +8,23 @@ class SQLAlchemyRepository(INotesRepository):
     self.session = session
 
   async def create(self, title: str) -> NoteSchema:
-    note = NoteModel(title=title)
+    order = len(await self.list())+1
+    note = NoteModel(title=title, order=order)
     self.session.add(note)
     self.session.commit()
     self.session.refresh(note)
     return note
 
-  async def index(self, id: str):
+  async def index(self, id: int) -> NoteSchema:
     note = self.session.query(NoteModel).filter(NoteModel.id == id).first()
     return note
+
+  async def list(self) -> list[NoteSchema]:
+    notes = self.session.query(NoteModel).all()
+    return notes
+
+  async def update(self, id: int, note: NoteSchema) -> NoteSchema:
+    pass
+
+  async def delete(self, id: int) -> NoteSchema:
+    pass
