@@ -13,7 +13,7 @@ class TestGetNoteService(unittest.IsolatedAsyncioTestCase):
     title = 'Hello World'
 
     note = await self.create_note.execute(title)
-    storedNote = await self.get_note(note.id)
+    storedNote = await self.get_note.execute(note.id)
 
     self.assertEqual(note.id, storedNote.id)
     self.assertEqual(note.title, storedNote.title)
