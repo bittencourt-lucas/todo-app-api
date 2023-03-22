@@ -15,10 +15,10 @@ class INotesRepository(abc.ABC):
     raise NotImplementedError
 
   @abc.abstractmethod
-  def update(self, id: str, note: Note) -> Note:
+  def update(self, id: int, note: Note) -> Note:
     raise NotImplementedError
   
   @abc.abstractmethod
-  def delete(self, id: str) -> None:
+  def delete(self, id: int) -> None:
     raise NotImplementedError
   

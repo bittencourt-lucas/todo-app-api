@@ -15,5 +15,5 @@ class SQLAlchemyRepository(INotesRepository):
     return note
 
   async def index(self, id: str):
-    note = self.session.query(NotesModel).filter(NoteModel.id == id).first()
+    note = self.session.query(NoteModel).filter(NoteModel.id == id).first()
     return note

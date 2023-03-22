@@ -16,3 +16,15 @@ class FakeNotesRepository(INotesRepository):
 
   async def index(self, id: int) -> NoteSchema:
     return self.notes[id]
+
+  async def list(self) -> list[NoteSchema]:
+    return self.notes
+
+  async def update(self, id: int, note: NoteSchema) -> NoteSchema:
+    index = self.index(id)
+    self.notes[index] = note
+
+    return self.notes[index]
+
+  async def delete(self, id: int) -> None:
+    self.notes.pop(id)
