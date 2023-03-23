@@ -7,7 +7,7 @@ class INotesRepository(abc.ABC):
     raise NotImplementedError
 
   @abc.abstractmethod
-  def index(self, id: int) -> Note:
+  def index(self, id: int) -> Note | None:
     raise NotImplementedError
 
   @abc.abstractmethod

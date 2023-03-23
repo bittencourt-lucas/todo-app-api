@@ -15,9 +15,9 @@ class SQLAlchemyRepository(INotesRepository):
     self.session.refresh(note)
     return note
 
-  async def index(self, id: int) -> NoteSchema:
+  async def index(self, id: int) -> NoteSchema | None:
     note = self.session.query(NoteModel).filter(NoteModel.id == id).first()
-    return note
+    return note if note else None
 
   async def list(self) -> list[NoteSchema]:
     notes = self.session.query(NoteModel).all()

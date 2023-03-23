@@ -14,9 +14,9 @@ class FakeNotesRepository(INotesRepository):
     
     return note
 
-  async def index(self, id: int) -> NoteSchema:
+  async def index(self, id: int) -> NoteSchema | None:
     index = next((i for i, note in enumerate(self.notes) if note.id == id), -1)
-    return self.notes[index]
+    return self.notes[index] if index != -1 else None 
 
   async def list(self) -> list[NoteSchema]:
     return self.notes
@@ -28,7 +28,7 @@ class FakeNotesRepository(INotesRepository):
     return self.notes[stored_note.id-1]
 
   async def delete(self, id: int) -> None:
-    self.notes.pop(id)
+    self.notes.pop(id-1)
 
   def clear(self) -> None:
     self.notes.clear()
