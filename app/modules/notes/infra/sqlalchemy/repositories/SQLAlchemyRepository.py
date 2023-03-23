@@ -29,5 +29,6 @@ class SQLAlchemyRepository(INotesRepository):
     updated_note = self.session.query(NoteModel).filter(NoteModel.id == id).first()
     return updated_note
 
-  async def delete(self, id: int) -> NoteSchema:
-    pass
+  async def delete(self, id: int) -> None:
+    self.session.query(NoteModel).where(NoteModel.id == id).delete()
+    self.session.commit()

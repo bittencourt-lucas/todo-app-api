@@ -5,6 +5,7 @@ from ....services.CreateNoteService import CreateNoteService
 from ....services.ListNotesService import ListNotesService
 from ....services.GetNoteService import GetNoteService
 from ....services.UpdateNoteService import UpdateNoteService
+from ....services.DeleteNoteService import DeleteNoteService
 
 class NotesController:
   def __init__(self, session: Session):
@@ -33,3 +34,8 @@ class NotesController:
     update_note_service = UpdateNoteService(self.ormRepository)
     note = await update_note_service.execute(id, note)
     return note
+
+  async def delete(self, request: int) -> None:
+    id = request
+    delete_note_service = DeleteNoteService(self.ormRepository)
+    await delete_note_service.execute(id)

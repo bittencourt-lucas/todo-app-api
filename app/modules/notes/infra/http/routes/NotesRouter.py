@@ -28,3 +28,8 @@ async def index(id: int):
 async def update(id: int, note: NoteUpdate):
   request = id, note
   return await notes_controller.update(request)
+
+@notes_router.delete('/{id}', response_model=None)
+async def delete(id: int):
+  request = id
+  return await notes_controller.delete(request)
