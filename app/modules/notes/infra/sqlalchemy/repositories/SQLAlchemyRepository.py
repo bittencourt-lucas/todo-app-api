@@ -10,9 +10,9 @@ class SQLAlchemyRepository(INotesRepository):
   async def create(self, title: str) -> NoteSchema:
     order = len(await self.list())+1
     note = NoteModel(title=title, order=order)
-    self.session.add(note)
-    self.session.commit()
-    self.session.refresh(note)
+    new_note = self.session.add(note)
+    new_note.commit()
+    new_note.refresh(note)
     return note
 
   async def index(self, id: int) -> NoteSchema:
@@ -24,7 +24,11 @@ class SQLAlchemyRepository(INotesRepository):
     return notes
 
   async def update(self, id: int, note: NoteSchema) -> NoteSchema:
-    pass
+    stored_note = self.session.query(NoteModel).filter(NoteModel.id == id)
+    stored_note.update(note=note)
+    stored_note.commit()
+    stored_note.refresh(note)
+    return note
 
   async def delete(self, id: int) -> NoteSchema:
     pass
