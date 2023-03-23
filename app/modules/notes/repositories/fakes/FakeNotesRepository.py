@@ -22,10 +22,10 @@ class FakeNotesRepository(INotesRepository):
     return self.notes
 
   async def update(self, id: int, note: NoteSchema) -> NoteSchema:
-    index = self.index(id)
-    self.notes[index] = note
+    stored_note = await self.index(id)
+    self.notes[stored_note.id-1] = note
 
-    return self.notes[index]
+    return self.notes[stored_note.id-1]
 
   async def delete(self, id: int) -> None:
     self.notes.pop(id)

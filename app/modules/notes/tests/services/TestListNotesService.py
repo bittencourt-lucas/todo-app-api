@@ -8,7 +8,7 @@ class TestListNotesService(unittest.IsolatedAsyncioTestCase):
   def setUp(self):
     self.notes_repository = FakeNotesRepository()
     self.create_note = CreateNoteService(self.notes_repository)
-    self.get_note = ListNotesService(self.notes_repository)
+    self.list_notes = ListNotesService(self.notes_repository)
 
   def tearDown(self):
     self.notes_repository.clear()
@@ -19,9 +19,9 @@ class TestListNotesService(unittest.IsolatedAsyncioTestCase):
     for title in titles:
       await self.create_note.execute(title)
 
-    storedNotes = await self.get_note.execute()
+    stored_notes = await self.list_notes.execute()
 
-    self.assertEqual(storedNotes[0].title, titles[0])
-    self.assertEqual(len(storedNotes), 3)
-    self.assertIsInstance(storedNotes, list)
+    self.assertEqual(stored_notes[0].title, titles[0])
+    self.assertEqual(len(stored_notes), 3)
+    self.assertIsInstance(stored_notes, list)
     
