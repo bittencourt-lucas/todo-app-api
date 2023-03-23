@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from app.shared.infra.sqlalchemy.orm import get_session, engine
 from ..controllers.NotesController import NotesController
-from ...sqlalchemy.schemas.Note import Note as NoteSchema, NoteCreate
+from ...sqlalchemy.schemas.Note import Note as NoteSchema, NoteCreate, NoteUpdate
 from ...sqlalchemy.models import Note as NoteModel
 
 NoteModel.Base.metadata.create_all(bind=engine)
@@ -22,4 +22,9 @@ async def list_notes():
 @notes_router.get('/{id}', response_model=NoteSchema)
 async def index(id: int):
   request = id
-  return await notes_controller.index(id)
+  return await notes_controller.index(request)
+
+@notes_router.patch('/{id}', response_model=NoteSchema)
+async def update(id: int, note: NoteUpdate):
+  request = id, note
+  return await notes_controller.update(request)

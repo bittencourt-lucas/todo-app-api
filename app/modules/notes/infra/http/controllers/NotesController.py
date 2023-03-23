@@ -4,6 +4,7 @@ from ...sqlalchemy.repositories.SQLAlchemyRepository import SQLAlchemyRepository
 from ....services.CreateNoteService import CreateNoteService
 from ....services.ListNotesService import ListNotesService
 from ....services.GetNoteService import GetNoteService
+from ....services.UpdateNoteService import UpdateNoteService
 
 class NotesController:
   def __init__(self, session: Session):
@@ -25,4 +26,10 @@ class NotesController:
     id = request
     get_note_service = GetNoteService(self.ormRepository)
     note = await get_note_service.execute(id)
+    return note
+
+  async def update(self, request: [int, NoteSchema]) -> NoteSchema:
+    id, note = request
+    update_note_service = UpdateNoteService(self.ormRepository)
+    note = await update_note_service.execute(id, note)
     return note

@@ -1,10 +1,14 @@
 from pydantic import BaseModel
 
 class NoteBase(BaseModel):
-  title: str
+  pass
 
 class NoteCreate(NoteBase):
-  pass
+  title: str
+
+class NoteUpdate(NoteBase):
+  completed: bool
+  order: int
 
 class Note(NoteBase):
   id: int
