@@ -7,19 +7,28 @@ class FirestoreRepository(INotesRepository):
     self.client = client
 
   async def create(self, title: str) -> NoteSchema:
-    note = dict(id=0, title=title, order=0, completed=False)
-    self.client.collection('notes').document().set(note)
+    notes = await self.list()
+    if (len(notes) > 0):
+      last_note = notes[-1]
+    else:
+      last_note = dict(id=-1, order=-1)
+    note = dict(id=last_note['id']+1, title=title, order=last_note['id']+1, completed=False)
+    self.client.collection('notes').document(str(note['id'])).set(note)
     return note
 
-  async def index(self, id: int):
-    note_found = []
-    created_note = self.client.collection('notes').where('id', '==', id).stream()
-    for doc in created_note:
-      note_found.append(doc.to_dict())
-    return note_found[0]
+  async def index(self, id: int) -> NoteSchema:
+    stored_notes = []
+    notes = self.client.collection('notes').where('id', '==', id).stream()
+    for note in notes:
+      stored_notes.append(note.to_dict())
+    return stored_notes[0]
 
-  async def list(self):
-    pass
+  async def list(self) -> list[NoteSchema]:
+    stored_notes = []
+    notes = self.client.collection('notes').stream()
+    for note in notes:
+      stored_notes.append(note.to_dict())
+    return stored_notes
 
   async def update(self, id: int, note: dict):
     pass
