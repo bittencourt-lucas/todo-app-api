@@ -1,8 +1,8 @@
 import unittest
+from app.shared.infra.schemas.Note import Note as NoteSchema
 from ...services.CreateNoteService import CreateNoteService
 from ...services.ListNotesService import ListNotesService
 from ...repositories.fakes.FakeNotesRepository import FakeNotesRepository
-from ...infra.sqlalchemy.schemas.Note import Note as NoteSchema
 
 class TestListNotesService(unittest.IsolatedAsyncioTestCase):
   def setUp(self):

@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from ..schemas.Note import Note as NoteSchema
+from app.shared.infra.schemas.Note import Note as NoteSchema
 from ..models.Note import Note as NoteModel
 from ....repositories.INotesRepository import INotesRepository
 

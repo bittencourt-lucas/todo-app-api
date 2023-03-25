@@ -1,5 +1,5 @@
+from app.shared.infra.schemas.Note import Note as NoteSchema
 from ..repositories.INotesRepository import INotesRepository
-from ..infra.sqlalchemy.schemas.Note import Note as NoteSchema
 
 class UpdateNoteService:
   def __init__(self, notesRepository: INotesRepository):

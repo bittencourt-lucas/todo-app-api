@@ -1,5 +1,5 @@
 import abc
-from ..infra.sqlalchemy.schemas.Note import Note
+from app.shared.infra.schemas.Note import Note
 
 class INotesRepository(abc.ABC):
   @abc.abstractmethod

@@ -1,5 +1,5 @@
+from app.shared.infra.schemas.Note import Note as NoteSchema
 from ..INotesRepository import INotesRepository
-from ...infra.sqlalchemy.schemas.Note import Note as NoteSchema
 from ...infra.sqlalchemy.models.Note import Note as NoteModel
 
 class FakeNotesRepository(INotesRepository):

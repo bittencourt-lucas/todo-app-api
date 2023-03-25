@@ -1,12 +1,16 @@
+import os
 from fastapi import APIRouter
 from app.shared.infra.sqlalchemy.orm import get_session, engine
+from app.shared.infra.firestore.client import client
+from app.shared.infra.schemas.Note import Note as NoteSchema, NoteCreate, NoteUpdate
 from ..controllers.NotesController import NotesController
-from ...sqlalchemy.schemas.Note import Note as NoteSchema, NoteCreate, NoteUpdate
 from ...sqlalchemy.models import Note as NoteModel
 
-NoteModel.Base.metadata.create_all(bind=engine)
-
-notes_controller = NotesController(get_session())
+if os.environ['ENV'] == 'development':
+  NoteModel.Base.metadata.create_all(bind=engine)
+  notes_controller = NotesController(get_session())
+elif os.environ['ENV'] == 'production':
+  notes_controller = NotesController(client)
 
 notes_router = APIRouter(prefix='/notes')
 
