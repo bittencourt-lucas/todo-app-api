@@ -9,6 +9,8 @@ You can check a full list of dependencies in `requirements.txt`. The core depend
 - Python==3.10.9
 - FastAPI==0.94.1
 - SQLAlchemy==2.0.6
+- alembic==1.10.2
+- google-cloud-datastore==2.15.0
 
 ## Running the Project
 
