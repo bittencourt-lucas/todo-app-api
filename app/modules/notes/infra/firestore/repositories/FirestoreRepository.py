@@ -7,8 +7,9 @@ class FirestoreRepository(INotesRepository):
     self.client = client
 
   async def create(self, title: str, order: int | None = None) -> NoteSchema:
-    notes = await self.list()
-    num_notes = len(notes)
+    if order:
+      notes = await self.list()
+      num_notes = len(notes)
     store_order = order if order else num_notes+1
     note = dict(id=num_notes+1, title=title, order=store_order, completed=False)
     self.client.collection('notes').document(str(num_notes+1)).set(note)
@@ -25,8 +26,10 @@ class FirestoreRepository(INotesRepository):
       stored_notes.append(note.to_dict())
     return stored_notes
 
-  async def update(self, id: int, note: dict):
-    pass
+  async def update(self, id: int, note: NoteSchema | None) -> NoteSchema:
+    self.client.collection('notes').document(str(id)).update(note.dict())
+    stored_note = await self.index(id)
+    return stored_note
 
   async def delete(self, id: int):
-    pass
+    self.client.collection('notes').document(str(id)).delete()

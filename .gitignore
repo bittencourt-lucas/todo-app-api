@@ -6,3 +6,4 @@ credentials/
 
 # Files
 .env
+app.yaml
