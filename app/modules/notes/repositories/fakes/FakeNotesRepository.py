@@ -6,10 +6,10 @@ class FakeNotesRepository(INotesRepository):
   notes: list[NoteSchema] = []
   id: int = 0
 
-  async def create(self, title: str) -> NoteSchema:
+  async def create(self, title: str, order: int | None = None) -> NoteSchema:
     self.id += 1
-    order = len(await self.list())+1
-    note = NoteModel(id=self.id, title=title, order=order, completed=False)
+    store_order = order if order else len(await self.list())+1
+    note = NoteModel(id=self.id, title=title, order=store_order, completed=False)
     self.notes.append(note)
     
     return note

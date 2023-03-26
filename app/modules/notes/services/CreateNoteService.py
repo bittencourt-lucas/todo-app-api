@@ -5,6 +5,6 @@ class CreateNoteService:
   def __init__(self, notesRepository: INotesRepository):
     self.notesRepository: INotesRepository = notesRepository
 
-  async def execute(self, title: str) -> NoteSchema:
-    note: NoteSchema = await self.notesRepository.create(title=title)
+  async def execute(self, title: str, order: int | None = None) -> NoteSchema:
+    note: NoteSchema = await self.notesRepository.create(title=title, order=order)
     return note

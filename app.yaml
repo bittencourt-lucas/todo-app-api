@@ -4,6 +4,13 @@ entrypoint: gunicorn -w 1 -k uvicorn.workers.UvicornWorker app.shared.infra.http
 
 instance_class: F1
 
+env_variables:
+  ENV: 'production'
+  SQLALCHEMY_DATABASE_URL: 'sqlite:///sqlite/notesapp.db'
+  GOOGLE_APPLICATION_CREDENTIALS: './credentials/__your_credentials__.json'
+
+service_account: __your_worker__@__your_app__.iam.gserviceaccount.com
+
 handlers:
 - url: /.*
   secure: always

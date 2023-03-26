@@ -21,9 +21,9 @@ class NotesController:
       raise(Exception('The input is not a valid ORM or DB client type.'))
 
   async def create(self, request: str) -> NoteSchema:
-    title = request
+    title, order = request
     create_note_service = CreateNoteService(self.ormRepository)
-    note = await create_note_service.execute(title)
+    note = await create_note_service.execute(title, order)
     return note
 
   async def list(self) -> list:

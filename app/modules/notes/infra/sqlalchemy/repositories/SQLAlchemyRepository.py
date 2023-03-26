@@ -7,9 +7,9 @@ class SQLAlchemyRepository(INotesRepository):
   def __init__(self, session: Session):
     self.session = session
 
-  async def create(self, title: str) -> NoteSchema:
-    order = len(await self.list())+1
-    note = NoteModel(title=title, order=order)
+  async def create(self, title: str, order: int | None = None) -> NoteSchema:
+    store_order = order if order else len(await self.list())+1
+    note = NoteModel(title=title, order=store_order)
     self.session.add(note)
     self.session.commit()
     self.session.refresh(note)

@@ -3,7 +3,7 @@ from app.shared.infra.schemas.Note import Note
 
 class INotesRepository(abc.ABC):
   @abc.abstractmethod
-  def create(self, title: str) -> Note:
+  def create(self, title: str, order: int | None) -> Note:
     raise NotImplementedError
 
   @abc.abstractmethod

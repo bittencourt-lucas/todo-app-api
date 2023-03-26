@@ -6,22 +6,17 @@ class FirestoreRepository(INotesRepository):
   def __init__(self, client: Client):
     self.client = client
 
-  async def create(self, title: str) -> NoteSchema:
+  async def create(self, title: str, order: int | None = None) -> NoteSchema:
     notes = await self.list()
-    if (len(notes) > 0):
-      last_note = notes[-1]
-    else:
-      last_note = dict(id=-1, order=-1)
-    note = dict(id=last_note['id']+1, title=title, order=last_note['id']+1, completed=False)
-    self.client.collection('notes').document(str(note['id'])).set(note)
+    num_notes = len(notes)
+    store_order = order if order else num_notes+1
+    note = dict(id=num_notes+1, title=title, order=store_order, completed=False)
+    self.client.collection('notes').document(str(num_notes+1)).set(note)
     return note
 
   async def index(self, id: int) -> NoteSchema:
-    stored_notes = []
-    notes = self.client.collection('notes').where('id', '==', id).stream()
-    for note in notes:
-      stored_notes.append(note.to_dict())
-    return stored_notes[0]
+    note = self.client.collection('notes').document(str(id)).get().to_dict()
+    return note
 
   async def list(self) -> list[NoteSchema]:
     stored_notes = []
